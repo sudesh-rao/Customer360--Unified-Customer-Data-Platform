@@ -19,3 +19,30 @@ This project solves that problem by integrating four different datasets:
 The data is processed through Bronze, Silver, and Gold layers to create a unified Customer 360 table.
 
 The final platform supports customer-level analysis, business KPI reporting, and a rule-based Python assistant that answers questions using the processed data.
+
+
+
+
+## Technology Stack
+
+| Technology | Purpose |
+|---|---|
+| Databricks | Cloud-based data engineering platform |
+| PySpark | Data cleaning, transformation, and processing |
+| SQL | Business analytics and KPI reporting |
+| Delta Lake | Reliable storage for Bronze, Silver, and Gold tables |
+| Unity Catalog | Data catalog and table organisation |
+| Python | Customer intelligence assistant and business logic |
+| GitHub | Project version control and documentation |
+
+## Architecture
+
+The project follows the Medallion Architecture:
+
+**Source CSV Files → Bronze → Silver → Gold → Customer Intelligence Assistant**
+
+- **Bronze:** Ingests raw customer, order, website event, and support ticket data.
+- **Silver:** Cleans, standardises, validates, and removes duplicate records.
+- **Gold:** Combines the cleaned datasets into a unified Customer 360 profile.
+- **Analytics:** Uses SQL to calculate business KPIs and identify customer trends.
+- **Assistant:** Uses Python and the Gold Customer 360 table to answer customer and business questions.
