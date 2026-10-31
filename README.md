@@ -46,3 +46,49 @@ The project follows the Medallion Architecture:
 - **Gold:** Combines the cleaned datasets into a unified Customer 360 profile.
 - **Analytics:** Uses SQL to calculate business KPIs and identify customer trends.
 - **Assistant:** Uses Python and the Gold Customer 360 table to answer customer and business questions.
+
+
+## Data Pipeline Implementation
+
+### 1. Bronze Layer – Raw Data Ingestion
+
+Ingested four CSV datasets into Databricks and stored them as Delta tables.
+
+| Dataset | Records Ingested |
+|---|---:|
+| Customers | 2,100 |
+| Orders | 6,080 |
+| Website Events | 20,150 |
+| Support Tickets | 1,830 |
+| **Total** | **30,160** |
+
+### 2. Silver Layer – Data Cleaning and Transformation
+
+Applied data cleaning and standardisation techniques using PySpark.
+
+- Standardised email addresses, names, phone numbers, and text fields.
+- Converted date columns into appropriate date formats.
+- Removed duplicate customer, order, event, and ticket records.
+- Applied data validation and filtering rules.
+
+| Dataset | Bronze Records | Silver Records |
+|---|---:|---:|
+| Customers | 2,100 | 2,000 |
+| Orders | 6,080 | 6,000 |
+| Website Events | 20,150 | 20,000 |
+| Support Tickets | 1,830 | 1,800 |
+| **Total** | **30,160** | **29,800** |
+
+### 3. Gold Layer – Customer 360
+
+Combined the four cleaned datasets into a unified customer profile using email-based joins and aggregations.
+
+The Gold table contains:
+
+- Customer details and segments.
+- Total orders and delivered-order lifetime value.
+- Last delivered order date.
+- Website activity and purchase events.
+- Total support tickets and unresolved tickets.
+
+**Final Gold Records: 2,000 customers**
