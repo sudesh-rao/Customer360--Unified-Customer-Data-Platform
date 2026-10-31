@@ -92,3 +92,47 @@ The Gold table contains:
 - Total support tickets and unresolved tickets.
 
 **Final Gold Records: 2,000 customers**
+
+
+
+## Business Analytics
+
+Created SQL queries to analyse customer behaviour and business performance.
+
+The analysis includes:
+
+- Top customers ranked by lifetime value.
+- Revenue and order distribution by customer segment.
+- Customers with unresolved support tickets.
+- Customers with high website engagement but no orders.
+- Overall business performance KPIs.
+
+### Key Business Metrics
+
+| Metric | Result |
+|---|---:|
+| Total Customers | 2,000 |
+| Total Orders | 5,237 |
+| Total Delivered-Order Revenue | ₹3,299,349.82 |
+| Average Customer Lifetime Value | ₹1,649.67 |
+| Website Events | 10,660 |
+| Support Tickets | 1,692 |
+| Unresolved Support Tickets | 422 |
+
+## Customer Intelligence Assistant
+
+Developed a Python-based, rule-driven assistant that retrieves information from the Gold Customer 360 table.
+
+### Customer-Level Questions
+- Find customers using their email address or customer ID.
+- Retrieve customer spending and order information.
+- Check website activity and support ticket details.
+- Identify customers who need attention based on unresolved support tickets.
+
+### Business-Level Questions
+- How many customers do we have?
+- What is our total revenue?
+- How many orders have been processed?
+- How many support tickets remain unresolved?
+
+The assistant uses Python functions and predefined question-matching rules to retrieve and present answers from the processed data. It does not currently use an external LLM.
