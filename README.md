@@ -136,3 +136,35 @@ Developed a Python-based, rule-driven assistant that retrieves information from 
 - How many support tickets remain unresolved?
 
 The assistant uses Python functions and predefined question-matching rules to retrieve and present answers from the processed data. It does not currently use an external LLM.
+
+
+
+
+## Project Structure
+
+```text
+customer-360-ai/
+│
+├── README.md
+│
+└── notebooks/
+    ├── 01_Bronze_Ingestion.py
+    ├── 02_Silver_Transformation.py
+    ├── 03_Gold_Customer360.py
+    ├── 04_SQL_Analytics.py
+    └── 05_AI_Customer_Agent.py
+```
+
+## Project Status
+
+- [x] Bronze data ingestion
+- [x] Silver data cleaning and transformation
+- [x] Gold Customer 360 data model
+- [x] SQL business analytics
+- [x] Python-based customer intelligence assistant
+- [x] Customer risk classification
+- [x] GitHub documentation and notebook uploads
+
+## Disclaimer
+
+This is a personal portfolio project built using synthetic datasets. It demonstrates data engineering concepts and is not a production customer data platform.
