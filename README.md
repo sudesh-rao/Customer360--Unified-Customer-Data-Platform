@@ -1,15 +1,14 @@
-# Customer 360 AI – Unified Customer Intelligence Platform
+# Customer 360 – Unified Customer Data Platform
 
-A data engineering portfolio project built using **Databricks, PySpark, SQL, and Delta Lake** to combine customer, order, website activity, and support data into a unified Customer 360 platform.
+An end-to-end data engineering portfolio project built using **Databricks, PySpark, SQL, Python, and Delta Lake** to integrate customer, order, website activity, and support data into a unified Customer 360 platform.
 
-The project follows a Medallion Architecture (Bronze, Silver, and Gold) and includes a Python-based customer intelligence assistant for answering customer and business questions.
-
+The project follows the **Medallion Architecture (Bronze, Silver, and Gold)** and includes data transformation, SQL analytics, business KPI reporting, and a Python-based query assistant.
 
 ## Project Overview
 
 Businesses often store customer information across multiple systems, making it difficult to understand customer behaviour in one place.
 
-This project solves that problem by integrating four different datasets:
+This project addresses that challenge by integrating four datasets:
 
 - **Customers:** Customer details, contact information, city, and segment.
 - **Orders:** Order history, purchase amounts, dates, and order status.
@@ -18,35 +17,31 @@ This project solves that problem by integrating four different datasets:
 
 The data is processed through Bronze, Silver, and Gold layers to create a unified Customer 360 table.
 
-The final platform supports customer-level analysis, business KPI reporting, and a rule-based Python assistant that answers questions using the processed data.
-
-
-
+The final platform supports customer-level analysis, business KPI reporting, and customer support insights.
 
 ## Technology Stack
 
 | Technology | Purpose |
 |---|---|
 | Databricks | Cloud-based data engineering platform |
-| PySpark | Data cleaning, transformation, and processing |
+| PySpark | Data ingestion, cleaning, transformation, and processing |
 | SQL | Business analytics and KPI reporting |
 | Delta Lake | Reliable storage for Bronze, Silver, and Gold tables |
 | Unity Catalog | Data catalog and table organisation |
-| Python | Customer intelligence assistant and business logic |
+| Python | Query assistant and business logic |
 | GitHub | Project version control and documentation |
 
 ## Architecture
 
 The project follows the Medallion Architecture:
 
-**Source CSV Files → Bronze → Silver → Gold → Customer Intelligence Assistant**
+**Source CSV Files → Bronze → Silver → Gold → SQL Analytics → Customer Query Assistant**
 
 - **Bronze:** Ingests raw customer, order, website event, and support ticket data.
 - **Silver:** Cleans, standardises, validates, and removes duplicate records.
-- **Gold:** Combines the cleaned datasets into a unified Customer 360 profile.
+- **Gold:** Aggregates and combines the cleaned datasets into a unified Customer 360 profile.
 - **Analytics:** Uses SQL to calculate business KPIs and identify customer trends.
-- **Assistant:** Uses Python and the Gold Customer 360 table to answer customer and business questions.
-
+- **Query Assistant:** Uses Python and the Gold Customer 360 table to answer predefined customer and business questions.
 
 ## Data Pipeline Implementation
 
@@ -67,9 +62,10 @@ Ingested four CSV datasets into Databricks and stored them as Delta tables.
 Applied data cleaning and standardisation techniques using PySpark.
 
 - Standardised email addresses, names, phone numbers, and text fields.
-- Converted date columns into appropriate date formats.
+- Converted date and timestamp columns into appropriate formats.
 - Removed duplicate customer, order, event, and ticket records.
 - Applied data validation and filtering rules.
+- Used window functions to identify and retain unique records.
 
 | Dataset | Bronze Records | Silver Records |
 |---|---:|---:|
@@ -79,21 +75,23 @@ Applied data cleaning and standardisation techniques using PySpark.
 | Support Tickets | 1,830 | 1,800 |
 | **Total** | **30,160** | **29,800** |
 
+**Result:** Removed 360 duplicate records across the four datasets.
+
 ### 3. Gold Layer – Customer 360
 
-Combined the four cleaned datasets into a unified customer profile using email-based joins and aggregations.
+Created a unified customer profile by aggregating order, website activity, and support ticket data before joining them with customer information using email-based matching.
 
 The Gold table contains:
 
 - Customer details and segments.
 - Total orders and delivered-order lifetime value.
 - Last delivered order date.
-- Website activity and purchase events.
+- Website activity, purchase events, and add-to-cart events.
 - Total support tickets and unresolved tickets.
 
-**Final Gold Records: 2,000 customers**
+Aggregating the source datasets before joining helps avoid duplicate customer rows caused by one-to-many relationships.
 
-
+**Final Gold Records: 2,000 customer profiles**
 
 ## Business Analytics
 
@@ -119,24 +117,30 @@ The analysis includes:
 | Support Tickets | 1,692 |
 | Unresolved Support Tickets | 422 |
 
-## Customer Intelligence Assistant
+## Customer Query Assistant
 
-Developed a Python-based, rule-driven assistant that retrieves information from the Gold Customer 360 table.
+Developed a Python-based, rule-driven query assistant that retrieves information from the Gold Customer 360 table.
 
-### Customer-Level Questions
-- Find customers using their email address or customer ID.
+### Customer-Level Capabilities
+
+- Find customers using email addresses or customer IDs.
 - Retrieve customer spending and order information.
-- Check website activity and support ticket details.
-- Identify customers who need attention based on unresolved support tickets.
+- Check last purchase dates and website activity.
+- Retrieve support ticket details.
+- Classify customer support risk based on unresolved ticket counts.
 
-### Business-Level Questions
-- How many customers do we have?
-- What is our total revenue?
-- How many orders have been processed?
-- How many support tickets remain unresolved?
+### Business-Level Capabilities
 
-The assistant uses Python functions and predefined question-matching rules to retrieve and present answers from the processed data. It does not currently use an external LLM.
+- Retrieve total customer and order counts.
+- Calculate total delivered-order revenue.
+- Retrieve support ticket and unresolved ticket counts.
+- Answer predefined business questions using aggregated KPIs.
+
+The assistant uses Python functions and predefined question-matching rules to retrieve and present information from the processed data.
+
+Customer risk classification is based on predefined rules using unresolved support ticket counts.
+
 
 ## Disclaimer
 
-This is a personal portfolio project built using synthetic datasets. It demonstrates data engineering concepts and is not a production customer data platform.
+This is a personal portfolio project built using synthetic datasets.
